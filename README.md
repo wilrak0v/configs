@@ -8,5 +8,5 @@ Vim n'a pas de configuration non plus, c'est à vous d'en faire ou alors d'en t�
 ## Contributions
 Toutes contributions est la bienvenue, pour ce faire, faites simplement un fork et une fois vos modifications faites, un(e) simple pull request suffit.
 
-**Merci à ceux qui téléchargeront**
+**Merci à ceux qui téléchargeront** \
 *Wilrakov, btw*
