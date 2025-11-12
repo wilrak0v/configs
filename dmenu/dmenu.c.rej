@@ -1,0 +1,11 @@
+--- dmenu.c
++++ dmenu.c
+@@ -188,6 +204,8 @@ drawmenu(void)
+ 		/* draw vertical list */
+ 		for (item = curr; item != next; item = item->right)
+ 			drawitem(item, x, y += bh, mw - x);
++
++        drawdate(x, lines * bh, w);
+ 	} else if (matches) {
+ 		/* draw horizontal list */
+ 		x += inputw;
