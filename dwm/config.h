@@ -5,21 +5,25 @@ static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "JetBrains Mono:size=10" };
-static const char dmenufont[]       = "monospace:size=10";
-static const char col_gray1[]       = "#2b2b2b";
-static const char col_gray2[]       = "#3b3b3b";
-static const char col_gray3[]       = "#e5e1d8";
-static const char col_gray4[]       = "#fff8e7";
-static const char col_cyan[]        = "#6b7c8b";
+static const char *fonts[]          = { "JetBrains Mono:size=12:antialias=true:autohint=true" };
+static const char dmenufont[]       = "JetBrains Mono:size=12";
+static const char col_gray1[]       = "#111111";
+static const char col_gray2[]       = "#222222";
+static const char col_gray3[]       = "#aaaaaa";
+static const char col_gray4[]       = "#111111";
+static const char col_white[]        = "#ffffff";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
-	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
+	[SchemeSel]  = { col_gray4, col_white, col_white  },
 };
 
 /* tagging */
 static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+
+/* Date and hour */
+static const int splitstatus        = 1;        /* 1 pour activer le split du status, 0 pour désactiver */
+static const char splitdelim[]      = ";";
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -58,12 +62,14 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", "Jetbrains Mono:10", "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-c", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_white, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "st", NULL };
+static const char *boomercmd[] = { "boomer", NULL };
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
+    { MODKEY|ShiftMask,             XK_l,      spawn,          {.v = boomercmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
