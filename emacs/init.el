@@ -1,0 +1,49 @@
+;; Clean up
+(setq inhibit-startup-message t)
+(menu-bar-mode -1)
+(tool-bar-mode -1)
+(scroll-bar-mode -1)
+
+;; Confort
+(setq display-line-numbers-type 'visual)
+(global-display-line-numbers-mode t)
+(column-number-mode t)
+(setq make-backup-file nil)
+(set-face-attribute 'default nil :font "JetBrains Mono" :height 120)
+(electric-pair-mode 1)
+(setq-default c-basic-offset 4)         ; If you don't use simpc-mode and you're coding in C
+(setq-default tab-width 4)
+(setq-default indent-tabs-mode nil)
+
+;; Simpc-Mode (C coding)[https://github.com/rexim/simpc-mode]
+;; (add-to-list 'load-path "~/.emacs.d/lisp")
+;; (require 'simpc-mode)
+;; (add-to-list 'auto-mode-alist '("\\.[hc]\\(pp\\)?\\'" . simpc-mode))
+
+;; Package manager
+(require 'package)
+(setq package-archives '(("gnu"    . "https://elpa.gnu.org/packages/")
+                         ("nongnu" . "https://elpa.nongnu.org/nongnu/")
+                         ("melpa"  . "https://melpa.org/packages/")))
+
+(package-initialize)
+
+;; Downloads packets
+(unless package-archive-contents (package-refresh-contents))
+
+;; Install use-package
+(unless (package-installed-p 'use-package) (package-install 'use-package))
+
+(require 'use-package)
+(setq use-package-always-ensure t)
+
+;; Multiple cursors. Install with M-x package-install then write multiple-cursors
+;;
+;; (require 'multiple-cursors)
+;; (global-set-key (kbd "C->") 'mc/mark-next-like-this)
+;; (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+;; (global-set-key (kbd "C-c m c") 'mc/edit-lines)
+;; (global-set-key (kbd "C-c m a") 'mc/mark-all-like-this)
+
+;; Dark mode
+(use-package gruber-darker-theme :ensure t :config (load-theme 'gruber-darker t))
